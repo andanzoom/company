@@ -1,0 +1,20 @@
+﻿{
+	"name": "www-cairenhui-com",
+	"version": "1.0.0",
+	"description": "cairenhui",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+		},
+	"repository": {
+		"type": "git",
+		"url": "git@git.cairenhui.com:fe/www-cairenhui-com.git"
+		},
+	"author": {
+		"name":"luodan",
+		"email": "luodan@cairenhui.com"
+		},
+	"devDependencies": {
+		"jekyll": "latest"
+	}
+}

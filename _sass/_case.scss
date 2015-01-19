@@ -1,0 +1,18 @@
+.case-content {
+	padding: 25px 0px 50px 0px;
+	height: auto;
+	.case-txt {
+		width: 1000px;
+		margin: 0px auto;
+		li {
+			float: left;
+			width: 332px;
+			text-align: center;
+			margin: 50px 0px;
+		}
+		li.border {
+			border-left: 1px dashed #eaeaea;
+			border-right: 1px dashed #eaeaea;
+		}
+	}
+}

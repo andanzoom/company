@@ -1,0 +1,110 @@
+/**
+ * Site header
+ */
+.site-header {
+    height: 74px;
+    border-bottom: 1px solid #eaeaea; 
+    background: #fefffb;
+    .wrapper {
+        width: 1000px;
+        height: 100%;
+        margin: 0px auto;
+        .wrapper-content {
+            height: 100%;
+            position: relative; 
+            z-index: 2;
+            img {
+                position: absolute;
+                top: 0px;
+                left: 0px; 
+                z-index: 3;  
+                *zoom: 1;     
+            }
+            .main-link {
+                height: 74px;
+                line-height: 74px;
+                float: right;
+                a {
+                    float: left;
+                    font-size: 16px;
+                    color: #857568;
+                    display: block;
+                    text-align: center;
+                    width: 123px;
+                    border-left: 1px solid #eaeaea;
+                    text-decoration: none;
+                }
+                a:hover {
+                    background: #f46414;
+                    color: #fff;
+                }
+                a.checked {
+                    background: #f46414;
+                    color: #fff;
+                }
+                a.last {
+                    border-right: 1px solid #eaeaea;
+                }
+            }
+        }        
+    }
+}
+
+.site-footer {
+    background: #353535;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    .footre-inner {
+        width: 975px;
+        padding: 30px 0px 30px 25px;
+        margin: 0px auto;
+        padding-top: 30px;
+        div {
+            float: left;
+            .footer-t {
+                color: #999;
+                font-size: 18px;
+            }
+            .footer-txt {
+                font-size: 25px;
+                color: #fff;
+                a {
+                  color: #fff;
+                  text-decoration: none;  
+                }
+                span {
+                    display: inline-block;
+                    padding-left: 10px;
+                    font-size: 14px;
+                    color: #e9a73e;
+                }
+            }
+        }
+        .email {
+            margin: 0px 130px 0px 115px;
+            *margin: 0px 120px 0px 102px;
+        }
+    }
+    .copy-content {
+        border-top: 1px solid #404040;
+        width: 100%;
+        font-size: 14px;
+        color: #888;
+        div {
+            width: 950px;
+            padding: 20px 25px 40px 25px;
+            margin: 0px auto;
+            .copy {
+                width: 475px;
+                display: inline-block;
+                text-align: left;
+            }
+            .address {
+                width: 470px;
+                display: inline-block;
+                text-align: right;
+            }
+        }        
+    }
+}
