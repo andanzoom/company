@@ -4,24 +4,147 @@ title: 杭州财人汇网络有限公司 - No.1证券互联网金融整体解决
 
 {% include head.html %}
 {% include header.html %}
-  <div class="lunbo_wrap">
-      <ul class="lunbo">
-        <li class="lunbo1"></li>
-      </ul>
-  </div>
-  <div class="content">
-    <div class="center-cont">
-      <img src="../images/content.png">
-      <div class="introduce">
-        <span>才华 + 激情 + 不妥协的态度，造就真正的领跑者</span>
-        <span class="yhty">更好的用户体验，源自多年的互联网产品经验</span>
-        <span>金融IT行业历练出身，全面保障技术和服务品质</span>
-      </div>
+<div class="lunbo_wrap">
+  <ul class="lunbo">
+    <li class="lunbo1"></li>
+    <li class="lunbo2"></li>
+  </ul>
+</div>
+<div class="content">
+  <div class="center-cont">
+    <img src="../images/content.png">
+    <div class="introduce">
+      <span>才华 + 激情 + 不妥协的态度，造就真正的领跑者</span>
+      <span class="yhty">更好的用户体验，源自多年的互联网产品经验</span>
+      <span>金融IT行业历练出身，全面保障技术和服务品质</span>
     </div>
   </div>
-  <script type="text/javascript">
-  $(document).ready(function(){ 
-      $('.shouye').addClass('checked');
-  });
-  </script>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.shouye').addClass('checked');
+  /*图片轮播*/
+  function Lunbo(ele,options){
+    options = $.extend({},$.fn.lunbo.defaults,options);
+    this.options = options;
+    this.ele = $(ele);
+    this.init();
+  }
+  Lunbo.prototype = {
+    constructor:Lunbo,
+    init : function(){
+      var that = this;_current = 1;var lunboScroll
+      findRepeatEle = this.ele.find(this.options.repeatEle);
+      len = findRepeatEle.length;
+      if(len>=2)
+      {
+        if(this.options.optional)
+        {
+          var oFrag = document.createDocumentFragment();
+          numWrap = document.createElement("div")
+          numWrap.id = this.options.numWrapId;
+          this.ele.append($(numWrap))
+          for (var i = 1;i<=len;i++)
+          {
+            var oSpan = document.createElement("span");
+            var oText = document.createTextNode(i);
+            oSpan.appendChild(oText);
+            oFrag.appendChild(oSpan);
+          }
+          numWrap.appendChild(oFrag);
+          $(numWrap).find("span:first").addClass('current')
+          //按钮移入
+          $(numWrap).find("span").bind("mouseover",function(){
+            _current = $(numWrap).find("span").index($(this));
+            that.showme()
+            clearInterval(lunboScroll)
+          })
+          $(numWrap).find("span").bind("mouseout",function(){
+            _current = $(numWrap).find("span").index($(this));
+            if(_current == 0)
+            {
+              _current = _current+1
+            }
+            else if(_current == (len - 1))
+            {
+              _current = 0
+            }
+            else{
+              _current = _current + 1
+            }
+            console.info(_current)
+            lunboScroll = window.setInterval(function(){console.info(_current);that.showme();},3000)
+            
+          })
+          //左右图标
+          /*
+          var _html = '<div class="arrow-left-right">'+
+          '<a href="javascript:void(0)" id="goRight"><i></i></a>'+
+          '<a href="javascript:void(0)" id="goLeft"><i></i></a>'+
+          '</div>';
+          this.ele.append(_html);
+          $('#goLeft').click(function(){
+            _current++;
+            if(_current==len){
+              _current=0;
+            }       
+            that.showme(true);
+          });
+          $('#goRight').click(function(){
+            that.showme();
+          })
+          $('#goLeft,#goRight').bind("mouseover",function(){
+            clearInterval(lunboScroll)
+          })
+          $('#goLeft,#goRight').bind("mouseout",function(){
+            lunboScroll = window.setInterval(function(){console.info(_current);that.showme();},3000)
+          })*/
+        }
+        
+        findRepeatEle.css({"display":"block"})
+        findRepeatEle.first().show()
+        findRepeatEle.first().siblings(that.options.repeatEle).hide()
+        lunboScroll = window.setInterval(function(){that.showme();},3000)//showme函数放入匿名函数内以保证不会被先执行
+      }
+      //图片hover
+      if(that.options.stoppable)
+      {
+        this.ele.hover(function(){
+          clearInterval(lunboScroll)
+        },function(){
+          lunboScroll = window.setInterval(function(){that.showme();},3000)
+        })
+      }
+    },
+    showme : function(tag){
+      findRepeatEle.eq(_current).stop(true,true).fadeIn(1000)
+      findRepeatEle.eq(_current).find("b").stop(true,true).animate({"bottom":"0"},1000)
+      findRepeatEle.eq(_current).siblings(this.options.repeatEle).stop(true,true).fadeOut(1000)
+      findRepeatEle.eq(_current).siblings(this.options.repeatEle).find("b").animate({"bottom":"-30px"},1000)
+      if(this.options.optional)
+      {
+        $(numWrap).find("span").eq(_current).addClass('current')
+        $(numWrap).find("span").eq(_current).siblings().removeClass('current')
+      }
+      _current = _current +1;
+      _current = (_current<len) ? _current : 0
+    }
+  }
+  $.fn.lunbo = function(options){
+    $(this).each(function(){
+      return new Lunbo(this,options)
+    })
+  }
+  $.fn.lunbo.defaults = {
+    repeatEle : "li",
+    numWrapId : "Nums",
+    optional  : true,
+    stoppable : true
+  }
+  $(".lunbo").lunbo({
+    stoppable:false
+  })
+});
+</script>
 {% include footer.html %}
